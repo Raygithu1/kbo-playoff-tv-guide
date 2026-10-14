@@ -168,8 +168,8 @@
     .round-badge.po { background: #311c38; color: var(--purple); }
     .round-badge.ks { background: #3b3318; color: var(--gold); }
 
-    .game-date { font-weight: 800; font-size: .98rem; color: var(--ink-bright); }
-    .game-subdate { font-size: .78rem; color: var(--muted); }
+    .game-date { font-weight: 800; font-size: 1.05rem; color: var(--ink-bright); }
+    .game-subdate { font-size: .88rem; font-weight: 600; color: #bed2c6; line-height: 1.35; }
 
     /* Column 2: Matchup Display */
     .matchup-col {
@@ -188,7 +188,7 @@
       background: #0f1a17;
       border: 1px solid var(--line);
       font-weight: 750;
-      font-size: .92rem;
+      font-size: .95rem;
     }
     .team-badge-wrap.seed-1 { border-color: rgba(246, 200, 95, 0.4); }
     .team-badge-wrap.seed-2 { border-color: rgba(204, 166, 255, 0.4); }
@@ -211,7 +211,7 @@
     .team-seed.tbd { background: transparent; color: var(--muted); }
 
     .matchup-vs {
-      font-size: .72rem;
+      font-size: .75rem;
       font-weight: 900;
       letter-spacing: .1em;
       color: var(--faint);
@@ -227,17 +227,40 @@
     }
     .broadcast-channel {
       font-weight: 750;
-      font-size: .88rem;
+      font-size: .92rem;
       color: var(--lime);
     }
     .broadcast-venue {
-      font-size: .78rem;
+      font-size: .84rem;
       color: var(--muted);
     }
     .broadcast-note {
-      font-size: .72rem;
-      color: var(--faint);
+      font-size: .84rem;
+      line-height: 1.35;
+      color: #9eb2a7;
     }
+    .game-card.completed {
+      opacity: 0.85;
+      border-color: #274536;
+      background: #0f1c18;
+    }
+    .game-card.cancelled {
+      opacity: 0.5;
+      text-decoration: line-through;
+      border-style: dashed;
+    }
+    .status-pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: .72rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .status-pill.final { background: #1b382b; color: var(--lime); }
+    .status-pill.cancelled { background: #331f1c; color: #ff8a80; text-decoration: none; }
+
 
     /* Horizontal Bracket */
     .bracket-scroll { overflow-x: auto; padding: 4px 0 14px; }
@@ -325,12 +348,12 @@
     <!-- Hero Next Game Banner -->
     <section class="hero-banner" aria-labelledby="hero-game-heading">
       <div>
-        <span class="hero-tag">Opening Matchup</span>
-        <h2 class="hero-title" id="hero-game-heading">Wild Card · Game 1: LG Twins vs. Doosan Bears</h2>
+        <span class="hero-tag">Next Matchup · Semi-Playoff G1</span>
+        <h2 class="hero-title" id="hero-game-heading">Semi-Playoff · Game 1: KIA Tigers vs. LG Twins</h2>
         <p class="hero-meta">
-          <strong>Wed, Oct. 14 · 18:30 KST</strong> (2:30 AM PDT) &nbsp;•&nbsp; 
-          <span>Seoul Jamsil Baseball Stadium</span> &nbsp;•&nbsp; 
-          <span>Broadcast: <strong>MBC TV</strong> &amp; <strong>TVING</strong></span>
+          <strong>Sat, Oct. 17 · 14:00 KST</strong> (Oct. 16 · 10:00 PM PDT) &nbsp;•&nbsp; 
+          <span>Gwangju-Kia Champions Field</span> &nbsp;•&nbsp; 
+          <span>Broadcast: <strong>KBS2 / MBC / SBS Live</strong> &amp; <strong>TVING</strong></span>
         </p>
       </div>
       <div class="countdown-boxes" id="countdown-values" role="timer" aria-label="Countdown to next game">
@@ -408,7 +431,7 @@
       <div class="schedule-timeline" id="schedule-list">
 
         <!-- Wild Card Games -->
-        <article class="game-card current" data-round="wc">
+        <article class="game-card completed" data-round="wc">
           <div class="game-time-col">
             <span class="round-badge wc">Wild Card · G1</span>
             <span class="game-date">Wed, Oct. 14</span>
@@ -416,23 +439,23 @@
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-4">
-              <span>LG Twins</span>
+              <span>LG Twins (Winner)</span>
               <span class="team-seed">4</span>
             </div>
-            <span class="matchup-vs">VS</span>
+            <span class="matchup-vs">4 - 1</span>
             <div class="team-badge-wrap">
               <span>Doosan Bears</span>
               <span class="team-seed">5</span>
             </div>
           </div>
           <div class="broadcast-col">
-            <span class="broadcast-channel">MBC TV · TVING</span>
+            <span class="broadcast-channel"><span class="status-pill final">FINAL</span> MBC TV · TVING</span>
             <span class="broadcast-venue">Seoul Jamsil Stadium</span>
-            <span class="broadcast-note">LG leads 1-0 advantage; 1 win or tie advances</span>
+            <span class="broadcast-note">LG wins 4-1 with 1-0 advantage; Advances to Semi-Playoff</span>
           </div>
         </article>
 
-        <article class="game-card" data-round="wc">
+        <article class="game-card cancelled" data-round="wc">
           <div class="game-time-col">
             <span class="round-badge wc">Wild Card · G2</span>
             <span class="game-date">Thu, Oct. 15</span>
@@ -450,14 +473,14 @@
             </div>
           </div>
           <div class="broadcast-col">
-            <span class="broadcast-channel">Terrestrial / Cable TBD</span>
+            <span class="broadcast-channel"><span class="status-pill cancelled">NOT NEEDED</span></span>
             <span class="broadcast-venue">Seoul Jamsil Stadium</span>
-            <span class="broadcast-note">If necessary (only if Doosan wins Game 1)</span>
+            <span class="broadcast-note">Cancelled — LG already clinched the series in Game 1</span>
           </div>
         </article>
 
         <!-- Semi-Playoff Games -->
-        <article class="game-card" data-round="semi">
+        <article class="game-card current" data-round="semi">
           <div class="game-time-col">
             <span class="round-badge semi">Semi-PO · G1</span>
             <span class="game-date">Sat, Oct. 17</span>
@@ -469,15 +492,15 @@
               <span class="team-seed">3</span>
             </div>
             <span class="matchup-vs">VS</span>
-            <div class="team-badge-wrap tbd">
-              <span>Wild Card Winner</span>
-              <span class="team-seed tbd">W</span>
+            <div class="team-badge-wrap seed-4">
+              <span>LG Twins</span>
+              <span class="team-seed">4</span>
             </div>
           </div>
           <div class="broadcast-col">
-            <span class="broadcast-channel">KBS / MBC / SBS TBD</span>
+            <span class="broadcast-channel">KBS2 / MBC / SBS Live</span>
             <span class="broadcast-venue">Gwangju-Kia Champions Field</span>
-            <span class="broadcast-note">Best-of-5 Series Opener</span>
+            <span class="broadcast-note">Best-of-5 Series Opener · TVING stream</span>
           </div>
         </article>
 
@@ -493,13 +516,13 @@
               <span class="team-seed">3</span>
             </div>
             <span class="matchup-vs">VS</span>
-            <div class="team-badge-wrap tbd">
-              <span>Wild Card Winner</span>
-              <span class="team-seed tbd">W</span>
+            <div class="team-badge-wrap seed-4">
+              <span>LG Twins</span>
+              <span class="team-seed">4</span>
             </div>
           </div>
           <div class="broadcast-col">
-            <span class="broadcast-channel">Broadcast Pool TBD</span>
+            <span class="broadcast-channel">Terrestrial Live · TVING</span>
             <span class="broadcast-venue">Gwangju-Kia Champions Field</span>
             <span class="broadcast-note">Travel day follows on Mon, Oct. 19</span>
           </div>
@@ -512,9 +535,9 @@
             <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
           </div>
           <div class="matchup-col">
-            <div class="team-badge-wrap tbd">
-              <span>Wild Card Winner</span>
-              <span class="team-seed tbd">W</span>
+            <div class="team-badge-wrap seed-4">
+              <span>LG Twins</span>
+              <span class="team-seed">4</span>
             </div>
             <span class="matchup-vs">VS</span>
             <div class="team-badge-wrap seed-3">
@@ -523,9 +546,9 @@
             </div>
           </div>
           <div class="broadcast-col">
-            <span class="broadcast-channel">Broadcast Pool TBD</span>
-            <span class="broadcast-venue">Wild Card Winner Home (Jamsil)</span>
-            <span class="broadcast-note">Series shifts to WC winner's ballpark</span>
+            <span class="broadcast-channel">Terrestrial Live · TVING</span>
+            <span class="broadcast-venue">Seoul Jamsil Baseball Stadium</span>
+            <span class="broadcast-note">Series shifts to LG Twins' home in Jamsil</span>
           </div>
         </article>
 
@@ -536,9 +559,9 @@
             <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
           </div>
           <div class="matchup-col">
-            <div class="team-badge-wrap tbd">
-              <span>Wild Card Winner</span>
-              <span class="team-seed tbd">W</span>
+            <div class="team-badge-wrap seed-4">
+              <span>LG Twins</span>
+              <span class="team-seed">4</span>
             </div>
             <span class="matchup-vs">VS</span>
             <div class="team-badge-wrap seed-3">
@@ -547,9 +570,9 @@
             </div>
           </div>
           <div class="broadcast-col">
-            <span class="broadcast-channel">Broadcast Pool TBD</span>
-            <span class="broadcast-venue">Wild Card Winner Home (Jamsil)</span>
-            <span class="broadcast-note">If necessary</span>
+            <span class="broadcast-channel">Terrestrial Live · TVING</span>
+            <span class="broadcast-venue">Seoul Jamsil Baseball Stadium</span>
+            <span class="broadcast-note">If necessary · Game 4 in Jamsil</span>
           </div>
         </article>
 
@@ -565,15 +588,15 @@
               <span class="team-seed">3</span>
             </div>
             <span class="matchup-vs">VS</span>
-            <div class="team-badge-wrap tbd">
-              <span>Wild Card Winner</span>
-              <span class="team-seed tbd">W</span>
+            <div class="team-badge-wrap seed-4">
+              <span>LG Twins</span>
+              <span class="team-seed">4</span>
             </div>
           </div>
           <div class="broadcast-col">
-            <span class="broadcast-channel">Broadcast Pool TBD</span>
+            <span class="broadcast-channel">Terrestrial Live · TVING</span>
             <span class="broadcast-venue">Gwangju-Kia Champions Field</span>
-            <span class="broadcast-note">Deciding Game (If necessary)</span>
+            <span class="broadcast-note">Deciding Game (If necessary) · Returns to Gwangju</span>
           </div>
         </article>
 
@@ -883,11 +906,11 @@
           <article class="bracket-round">
             <div class="bracket-round-head"><div class="bracket-index">ROUND 01</div><h3>Wild Card</h3></div>
             <div class="bracket-match">
-              <div class="bracket-slot"><span class="team-seed">4</span>LG Twins</div>
-              <div class="bracket-vs">VS</div>
+              <div class="bracket-slot"><span class="team-seed">4</span>LG Twins (Adv.)</div>
+              <div class="bracket-vs">4 - 1</div>
               <div class="bracket-slot"><span class="team-seed">5</span>Doosan Bears</div>
             </div>
-            <p class="bracket-advance">Oct. 14–15 · Jamsil<br>LG advances with 1 win/tie; Doosan needs 2 wins.</p>
+            <p class="bracket-advance">Oct. 14 · Jamsil<br>LG wins 4-1; clinched series in Game 1.</p>
           </article>
           <div class="bracket-connector" aria-hidden="true"><span>WINNER</span><b>→</b></div>
           <article class="bracket-round">
@@ -895,7 +918,7 @@
             <div class="bracket-match">
               <div class="bracket-slot"><span class="team-seed">3</span>KIA Tigers</div>
               <div class="bracket-vs">VS</div>
-              <div class="bracket-slot"><span class="team-seed tbd">W</span>Wild Card winner</div>
+              <div class="bracket-slot"><span class="team-seed">4</span>LG Twins</div>
             </div>
             <p class="bracket-advance">Oct. 17–23 · Best-of-5<br>Winner advances to Playoff.</p>
           </article>
@@ -933,8 +956,8 @@
 
   <script>
     (() => {
-      // Countdown Timer Logic
-      const gameTime = Date.parse("2026-10-14T09:30:00Z");
+      // Countdown Timer Logic - Semi-Playoff Game 1: Sat, Oct 17, 2026 14:00 KST (05:00 UTC)
+      const gameTime = Date.parse("2026-10-17T05:00:00Z");
       const values = document.getElementById("countdown-values");
       const status = document.getElementById("countdown-status");
       const fields = {
