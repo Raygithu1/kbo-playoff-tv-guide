@@ -39,28 +39,53 @@
       color: var(--ink);
       font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-    .wrap { width: min(1140px, calc(100% - 36px)); margin: 0 auto; padding: 40px 0 70px; }
+    .wrap { width: min(1140px, calc(100% - 36px)); margin: 0 auto; padding: 24px 0 60px; }
     
-    /* Header */
-    .eyebrow { color: var(--lime); font-size: .8rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 6px; }
-    header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 28px; }
-    h1 { margin: 0 0 6px; font-size: clamp(2.8rem, 7.5vw, 5.5rem); line-height: .98; letter-spacing: -.05em; color: var(--ink-bright); }
-    .lede { margin: 8px 0 0; max-width: 640px; color: var(--muted); font-size: 1.05rem; line-height: 1.5; }
+    /* Header (Compact & Efficient) */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .header-left {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--ink-bright);
+      font-weight: 850;
+    }
+    .header-desc {
+      color: var(--muted);
+      font-size: .92rem;
+      margin: 0;
+    }
     .season-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
+      gap: 6px;
+      padding: 5px 12px;
       border-radius: 999px;
-      border: 1px solid var(--lime);
+      border: 1px solid rgba(203, 240, 120, 0.4);
       background: rgba(203, 240, 120, 0.08);
       color: var(--lime);
       font-weight: 800;
-      font-size: .85rem;
+      font-size: .75rem;
       letter-spacing: .08em;
       white-space: nowrap;
     }
-    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px var(--lime); }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); }
+
 
     /* Countdown Hero */
     .hero-banner {
@@ -320,9 +345,9 @@
       .broadcast-col { text-align: left; }
     }
     @media (max-width: 720px) {
-      .wrap { width: min(100% - 24px, 560px); padding-top: 24px; }
-      header { display: block; }
-      .season-badge { display: inline-flex; margin-top: 14px; }
+      .wrap { width: min(100% - 24px, 560px); padding-top: 18px; }
+      .header-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .season-badge { align-self: flex-start; }
       .hero-banner { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
       .countdown-boxes { justify-content: flex-start; }
       .matchup-col { flex-direction: column; gap: 6px; }
@@ -334,15 +359,12 @@
 </head>
 <body>
   <main class="wrap">
-    <header>
-      <div>
-        <div class="eyebrow">2026 KBO POSTSEASON GUIDE</div>
+    <header class="header-bar">
+      <div class="header-left">
         <h1>2026 KBO Playoff</h1>
-        <p class="lede">Comprehensive TV channels and complete playoff schedule from Wild Card through the Korean Series. Game times in KST and PDT.</p>
+        <p class="header-desc">TV broadcast guide &amp; schedule (KST / PDT)</p>
       </div>
-      <div>
-        <div class="season-badge"><span class="pulse-dot"></span> POSTSEASON LIVE</div>
-      </div>
+      <div class="season-badge"><span class="pulse-dot"></span> POSTSEASON LIVE</div>
     </header>
 
     <!-- Hero Next Game Banner -->
