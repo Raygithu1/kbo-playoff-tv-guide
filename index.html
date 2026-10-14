@@ -3,117 +3,337 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#10231f" />
-  <title>2026 KBO Playoff</title>
+  <meta name="theme-color" content="#0e1715" />
+  <title>2026 KBO Playoff Guide &amp; Schedule</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #101b19;
-      --panel: #182724;
-      --panel-2: #20332e;
+      --bg: #0b1311;
+      --bg-card: #13201c;
+      --bg-card-alt: #182823;
+      --panel: #14231f;
+      --panel-hover: #1c322b;
       --ink: #f5f2e9;
-      --muted: #b1c0b9;
-      --line: #385047;
-      --lime: #c9ed76;
-      --orange: #ff9e62;
-      --blue: #8fc9ef;
+      --ink-bright: #ffffff;
+      --muted: #9eb2a7;
+      --faint: #637a70;
+      --line: #273d34;
+      --line-bright: #3c5e50;
+      --lime: #cbf078;
+      --lime-dim: #2f451f;
+      --orange: #ff9d5c;
+      --orange-bg: #351f15;
+      --blue: #7ec4f8;
+      --blue-bg: #152636;
+      --purple: #cca6ff;
+      --accent-live: #ef4444;
+      --gold: #f6c85f;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
-      background: radial-gradient(ellipse at 82% 0%, #284137 0, transparent 36%), var(--bg);
+      background: radial-gradient(circle at 80% -10%, #1e382d 0%, transparent 40%),
+                  radial-gradient(circle at 10% 40%, #12241e 0%, transparent 50%),
+                  var(--bg);
       color: var(--ink);
-      font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-    .wrap { width: min(1120px, calc(100% - 36px)); margin: 0 auto; padding: 42px 0 64px; }
-    .eyebrow { color: var(--lime); font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-    header { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
-    h1 { margin: 8px 0 4px; font-size: clamp(3rem, 9vw, 7rem); line-height: .98; letter-spacing: -.06em; }
-    .lede { margin: 14px 0 0; max-width: 610px; color: var(--muted); font-size: 1.05rem; }
-    .season-mark { color: var(--lime); border: 1px solid var(--line); padding: 12px 15px; border-radius: 14px; white-space: nowrap; font-weight: 750; }
-    .countdown-card { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 20px 22px; border: 1px solid #596d45; border-radius: 18px; background: linear-gradient(110deg, #263a2d, #192925); }
-    .countdown-copy { min-width: 0; }
-    .countdown-label { color: var(--lime); font-size: .73rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
-    .countdown-copy h2 { margin: 4px 0 3px; }
-    .countdown-copy p { margin: 0; color: var(--muted); font-size: .9rem; }
-    .countdown-values { display: grid; grid-template-columns: repeat(3, minmax(64px, 82px)); gap: 8px; flex: 0 0 auto; }
-    .countdown-unit { padding: 8px 6px; text-align: center; border: 1px solid var(--line); border-radius: 12px; background: #101c19; }
-    .countdown-unit strong { display: block; color: var(--ink); font-size: 1.65rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
-    .countdown-unit span { color: var(--muted); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
-    .countdown-status { color: var(--lime); font-weight: 800; font-size: .95rem; text-align: right; }
-    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 36px 0 14px; }
-    h2 { margin: 0; font-size: 1.4rem; letter-spacing: -.025em; }
+    .wrap { width: min(1140px, calc(100% - 36px)); margin: 0 auto; padding: 40px 0 70px; }
+    
+    /* Header */
+    .eyebrow { color: var(--lime); font-size: .8rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 6px; }
+    header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 28px; }
+    h1 { margin: 0 0 6px; font-size: clamp(2.8rem, 7.5vw, 5.5rem); line-height: .98; letter-spacing: -.05em; color: var(--ink-bright); }
+    .lede { margin: 8px 0 0; max-width: 640px; color: var(--muted); font-size: 1.05rem; line-height: 1.5; }
+    .season-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--lime);
+      background: rgba(203, 240, 120, 0.08);
+      color: var(--lime);
+      font-weight: 800;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px var(--lime); }
+
+    /* Countdown Hero */
+    .hero-banner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 28px;
+      border-radius: 20px;
+      border: 1px solid #4a6339;
+      background: linear-gradient(135deg, #1d2f23 0%, #13221b 100%);
+      box-shadow: 0 16px 36px -12px rgba(0,0,0,0.5);
+      margin-bottom: 36px;
+    }
+    .hero-tag { display: inline-block; padding: 3px 10px; border-radius: 6px; background: rgba(203,240,120,0.18); color: var(--lime); font-size: .75rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+    .hero-title { margin: 0 0 6px; font-size: clamp(1.4rem, 2.5vw, 1.85rem); font-weight: 800; letter-spacing: -.02em; }
+    .hero-meta { margin: 0; color: var(--muted); font-size: .95rem; }
+    .hero-meta strong { color: var(--ink-bright); }
+    .countdown-boxes { display: flex; gap: 10px; }
+    .countdown-unit {
+      min-width: 74px;
+      padding: 10px 8px;
+      text-align: center;
+      border-radius: 14px;
+      background: #0d1714;
+      border: 1px solid var(--line-bright);
+    }
+    .countdown-unit strong { display: block; font-size: 1.85rem; line-height: 1.1; font-weight: 850; color: var(--lime); font-variant-numeric: tabular-nums; }
+    .countdown-unit span { font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .countdown-status { color: var(--lime); font-weight: 800; font-size: 1rem; }
+
+    /* Section Headings */
+    .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin: 44px 0 18px; }
+    h2 { margin: 0; font-size: 1.55rem; letter-spacing: -.03em; color: var(--ink-bright); }
     .hint { color: var(--muted); margin: 4px 0 0; font-size: .9rem; }
-    .table-shell { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: color-mix(in srgb, var(--panel) 92%, transparent); }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--line); }
-    th { color: var(--muted); font-size: .74rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 800; background: #1c2d29; }
-    tr:last-child td { border-bottom: 0; }
-    .channel-name { font-weight: 760; }
-    .channel-name a { color: inherit; text-decoration-color: var(--lime); text-underline-offset: 3px; }
-    .channel-number { color: var(--lime); font-weight: 800; font-variant-numeric: tabular-nums; }
-    .pill { display: inline-flex; align-items: center; padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .8rem; }
-    .games { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .game { position: relative; min-height: 164px; padding: 19px; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(135deg, var(--panel-2), var(--panel)); }
-    .game-top { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: .83rem; }
-    .round { color: var(--orange); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-    .matchup { display: flex; align-items: center; gap: 12px; margin: 24px 0 16px; font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 800; letter-spacing: -.03em; }
-    .team { flex: 1; padding: 10px 11px; border-radius: 10px; background: #13211e; border: 1px dashed #587066; text-align: center; }
-    .vs { color: var(--muted); font-size: .72rem; letter-spacing: .12em; }
-    .game-foot { color: var(--muted); font-size: .85rem; }
-    .bracket-scroll { overflow-x: auto; padding: 4px 0 12px; }
-    .bracket { min-width: 1010px; display: grid; grid-template-columns: minmax(190px, 1fr) 42px minmax(190px, 1fr) 42px minmax(190px, 1fr) 42px minmax(190px, 1fr); align-items: center; gap: 8px; }
-    .bracket-round { min-height: 236px; padding: 15px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(145deg, var(--panel-2), var(--panel)); display: flex; flex-direction: column; justify-content: center; }
-    .bracket-round.final { border-color: #718148; background: linear-gradient(145deg, #35432b, var(--panel)); }
-    .bracket-round-head { margin-bottom: 13px; }
-    .bracket-index { color: var(--orange); font-size: .68rem; letter-spacing: .12em; font-weight: 850; }
-    .bracket-round h3 { margin: 2px 0 0; font-size: 1rem; }
-    .bracket-match { padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: #13211e; }
-    .bracket-slot { min-height: 39px; display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 8px; background: #1c302a; font-weight: 720; font-size: .84rem; }
-    .bracket-slot + .bracket-vs { margin-top: 5px; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border: 1px solid var(--line-bright); border-radius: 999px; color: var(--muted); font-size: .8rem; }
+
+    /* Quick Filter Tabs for Schedule */
+    .schedule-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .filter-btn {
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: var(--bg-card);
+      color: var(--muted);
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+      transition: all .15s ease;
+    }
+    .filter-btn:hover { background: var(--bg-card-alt); color: var(--ink); border-color: var(--line-bright); }
+    .filter-btn.active {
+      background: var(--lime);
+      color: #0c1813;
+      border-color: var(--lime);
+      box-shadow: 0 0 12px rgba(203,240,120,0.25);
+    }
+
+    /* Master Schedule Grid */
+    .schedule-timeline {
+      display: grid;
+      gap: 14px;
+    }
+    .game-card {
+      display: grid;
+      grid-template-columns: 140px 1fr 230px;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 22px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--bg-card);
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .game-card:hover {
+      border-color: var(--line-bright);
+      background: var(--bg-card-alt);
+    }
+    .game-card.current {
+      border-color: var(--lime);
+      background: linear-gradient(90deg, rgba(203,240,120,0.08) 0%, var(--bg-card) 60%);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Column 1: Date & Round badge */
+    .game-time-col { display: flex; flex-direction: column; gap: 4px; }
+    .round-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: .7rem;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .round-badge.wc { background: #3c2415; color: var(--orange); }
+    .round-badge.semi { background: #162b3a; color: var(--blue); }
+    .round-badge.po { background: #311c38; color: var(--purple); }
+    .round-badge.ks { background: #3b3318; color: var(--gold); }
+
+    .game-date { font-weight: 800; font-size: .98rem; color: var(--ink-bright); }
+    .game-subdate { font-size: .78rem; color: var(--muted); }
+
+    /* Column 2: Matchup Display */
+    .matchup-col {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .team-badge-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 10px;
+      background: #0f1a17;
+      border: 1px solid var(--line);
+      font-weight: 750;
+      font-size: .92rem;
+    }
+    .team-badge-wrap.seed-1 { border-color: rgba(246, 200, 95, 0.4); }
+    .team-badge-wrap.seed-2 { border-color: rgba(204, 166, 255, 0.4); }
+    .team-badge-wrap.seed-3 { border-color: rgba(126, 196, 248, 0.4); }
+    .team-badge-wrap.seed-4 { border-color: rgba(203, 240, 120, 0.4); }
+    .team-badge-wrap.tbd { opacity: 0.65; border-style: dashed; }
+    
+    .team-seed {
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      background: #1f332a;
+      color: var(--lime);
+      font-size: .68rem;
+      font-weight: 900;
+    }
+    .team-seed.gold { background: #3d3013; color: var(--gold); }
+    .team-seed.tbd { background: transparent; color: var(--muted); }
+
+    .matchup-vs {
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      color: var(--faint);
+      padding: 0 4px;
+    }
+
+    /* Column 3: Broadcast & Location */
+    .broadcast-col {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      text-align: right;
+    }
+    .broadcast-channel {
+      font-weight: 750;
+      font-size: .88rem;
+      color: var(--lime);
+    }
+    .broadcast-venue {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    .broadcast-note {
+      font-size: .72rem;
+      color: var(--faint);
+    }
+
+    /* Horizontal Bracket */
+    .bracket-scroll { overflow-x: auto; padding: 4px 0 14px; }
+    .bracket {
+      min-width: 1040px;
+      display: grid;
+      grid-template-columns: minmax(200px, 1fr) 42px minmax(200px, 1fr) 42px minmax(200px, 1fr) 42px minmax(200px, 1fr);
+      align-items: center;
+      gap: 10px;
+    }
+    .bracket-round {
+      min-height: 250px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--bg-card-alt), var(--bg-card));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .bracket-round.final {
+      border-color: #6d6628;
+      background: linear-gradient(145deg, #2a2512, var(--bg-card));
+    }
+    .bracket-round-head { margin-bottom: 12px; }
+    .bracket-index { color: var(--orange); font-size: .7rem; letter-spacing: .12em; font-weight: 850; text-transform: uppercase; }
+    .bracket-round.final .bracket-index { color: var(--gold); }
+    .bracket-round h3 { margin: 2px 0 0; font-size: 1.05rem; color: var(--ink-bright); }
+    .bracket-match { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #0e1715; }
+    .bracket-slot { min-height: 38px; display: flex; align-items: center; gap: 9px; padding: 6px 10px; border-radius: 8px; background: #162420; font-weight: 750; font-size: .85rem; }
+    .bracket-slot + .bracket-vs { margin-top: 6px; }
     .bracket-vs { padding: 2px 0; color: var(--muted); text-align: center; font-size: .62rem; letter-spacing: .14em; font-weight: 800; }
-    .seed { flex: 0 0 23px; height: 23px; display: grid; place-items: center; border-radius: 7px; background: #30463b; color: var(--lime); font-size: .7rem; font-weight: 850; }
-    .seed.tbd { background: transparent; border: 1px dashed #587066; color: var(--muted); }
-    .bracket-advance { margin: 12px 0 0; color: var(--muted); font-size: .74rem; text-align: center; }
+    .bracket-advance { margin: 12px 0 0; color: var(--muted); font-size: .75rem; text-align: center; line-height: 1.4; }
     .bracket-connector { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--lime); }
     .bracket-connector span { font-size: .56rem; letter-spacing: .1em; font-weight: 850; color: var(--muted); }
     .bracket-connector b { font-size: 1.55rem; line-height: 1.2; }
-    .note { border-left: 3px solid var(--lime); margin-top: 24px; padding: 12px 16px; color: var(--muted); background: #172521; border-radius: 0 12px 12px 0; font-size: .9rem; }
-    footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 38px; color: #859991; font-size: .8rem; }
-    @media (max-width: 720px) {
-      .wrap { width: min(100% - 24px, 540px); padding-top: 28px; }
-      header { display: block; }
-      .season-mark { display: inline-block; margin-top: 18px; }
-      .countdown-card { align-items: stretch; flex-direction: column; gap: 14px; padding: 17px; }
-      .countdown-values { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .countdown-status { text-align: left; }
-      .games { grid-template-columns: 1fr; }
-      th, td { padding: 13px 12px; }
-      .hide-mobile { display: none; }
-      footer { display: block; }
-      footer span { display: block; margin-top: 5px; }
+
+    /* Channels Table */
+    .table-shell { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--bg-card); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 15px 18px; text-align: left; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: .74rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 850; background: #152520; }
+    tr:last-child td { border-bottom: 0; }
+    .channel-name { font-weight: 750; }
+    .channel-name a { color: inherit; text-decoration-color: var(--lime); text-underline-offset: 3px; }
+    .channel-number { color: var(--lime); font-weight: 800; font-variant-numeric: tabular-nums; }
+
+    .note { border-left: 3px solid var(--lime); margin-top: 26px; padding: 12px 18px; color: var(--muted); background: #121f1b; border-radius: 0 12px 12px 0; font-size: .9rem; }
+    footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--faint); font-size: .82rem; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .game-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .broadcast-col { text-align: left; }
     }
-    @media (max-width: 380px) { .matchup { gap: 7px; } .team { padding: 9px 5px; } }
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 24px, 560px); padding-top: 24px; }
+      header { display: block; }
+      .season-badge { display: inline-flex; margin-top: 14px; }
+      .hero-banner { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+      .countdown-boxes { justify-content: flex-start; }
+      .matchup-col { flex-direction: column; gap: 6px; }
+      .matchup-vs { text-align: center; }
+      .hide-mobile { display: none; }
+      footer { flex-direction: column; gap: 6px; }
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
     <header>
       <div>
+        <div class="eyebrow">2026 KBO POSTSEASON GUIDE</div>
         <h1>2026 KBO Playoff</h1>
-        <p class="lede">Your quick guide to where the postseason is on. The opening matchup is set; later rounds will fill in as teams advance.</p>
+        <p class="lede">Comprehensive TV channels and complete playoff schedule from Wild Card through the Korean Series. Game times in KST and PDT.</p>
       </div>
-      <div class="season-mark">2026 POSTSEASON</div>
+      <div>
+        <div class="season-badge"><span class="pulse-dot"></span> POSTSEASON LIVE</div>
+      </div>
     </header>
 
-    <section class="countdown-card" aria-labelledby="countdown-heading">
-      <div class="countdown-copy">
-        <div class="countdown-label">Next scheduled game</div>
-        <h2 id="countdown-heading">Wild Card · Game 1</h2>
-        <p>Wed, Oct. 14 · 2:30 AM PDT / 18:30 KST</p>
+    <!-- Hero Next Game Banner -->
+    <section class="hero-banner" aria-labelledby="hero-game-heading">
+      <div>
+        <span class="hero-tag">Opening Matchup</span>
+        <h2 class="hero-title" id="hero-game-heading">Wild Card · Game 1: LG Twins vs. Doosan Bears</h2>
+        <p class="hero-meta">
+          <strong>Wed, Oct. 14 · 18:30 KST</strong> (2:30 AM PDT) &nbsp;•&nbsp; 
+          <span>Seoul Jamsil Baseball Stadium</span> &nbsp;•&nbsp; 
+          <span>Broadcast: <strong>MBC TV</strong> &amp; <strong>TVING</strong></span>
+        </p>
       </div>
-      <div class="countdown-values" id="countdown-values" role="timer" aria-label="Countdown to the Wild Card game">
+      <div class="countdown-boxes" id="countdown-values" role="timer" aria-label="Countdown to next game">
         <div class="countdown-unit"><strong id="countdown-days">--</strong><span>Days</span></div>
         <div class="countdown-unit"><strong id="countdown-hours">--</strong><span>Hours</span></div>
         <div class="countdown-unit"><strong id="countdown-minutes">--</strong><span>Minutes</span></div>
@@ -121,106 +341,599 @@
       <div class="countdown-status" id="countdown-status" aria-live="polite"></div>
     </section>
 
+    <!-- TV & Streaming Channels -->
     <section aria-labelledby="channels-title">
       <div class="section-head">
-        <div><h2 id="channels-title">Channels</h2><p class="hint">Add the channel number when you have it.</p></div>
-        <span class="pill">Channel numbers: add your provider numbers</span>
+        <div><h2 id="channels-title">TV &amp; Streaming Channels</h2><p class="hint">Check where to watch each broadcast. Update provider channel numbers as needed.</p></div>
+        <span class="pill">Provider channel numbers: TBD</span>
       </div>
       <div class="table-shell">
         <table>
-          <thead><tr><th>Channel name</th><th>Channel number</th><th class="hide-mobile">Notes</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Platform / Channel</th>
+              <th>Channel No.</th>
+              <th>Coverage Scope</th>
+              <th class="hide-mobile">Broadcast Notes</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td class="channel-name">MBC TV</td><td class="channel-number">TBD</td><td class="hide-mobile"><span class="pill">Oct. 14 Wild Card · KBO listing</span></td></tr>
-            <tr><td class="channel-name">KBS N SPORTS</td><td class="channel-number">TBD</td><td class="hide-mobile"><span class="pill">Wild Card listing · check daily schedule</span></td></tr>
-            <tr><td class="channel-name">TVING</td><td class="channel-number">App</td><td class="hide-mobile"><span class="pill">KBO says full postseason stream</span></td></tr>
-            <tr><td class="channel-name"><a href="https://www.ondemandkorea.com/en/player/vod/kbo-2026-season-1">OnDemandKorea</a></td><td class="channel-number">Website / app</td><td class="hide-mobile"><span class="pill">Live KBO games advertised · playoff coverage not game-specifically confirmed</span></td></tr>
+            <tr>
+              <td class="channel-name">MBC TV</td>
+              <td class="channel-number">TBD</td>
+              <td>Wild Card Game 1 (Live)</td>
+              <td class="hide-mobile"><span class="pill">Official KBO terrestrial broadcast</span></td>
+            </tr>
+            <tr>
+              <td class="channel-name">KBS N SPORTS</td>
+              <td class="channel-number">TBD</td>
+              <td>Postseason Cable Pool</td>
+              <td class="hide-mobile"><span class="pill">Check daily cable broadcast schedule</span></td>
+            </tr>
+            <tr>
+              <td class="channel-name">TVING</td>
+              <td class="channel-number">App / Web</td>
+              <td>Full Postseason Streaming</td>
+              <td class="hide-mobile"><span class="pill">Exclusive live streaming online (Korea)</span></td>
+            </tr>
+            <tr>
+              <td class="channel-name"><a href="https://www.ondemandkorea.com/en/player/vod/kbo-2026-season-1" target="_blank" rel="noopener">OnDemandKorea</a></td>
+              <td class="channel-number">OTT App / Web</td>
+              <td>International Streaming</td>
+              <td class="hide-mobile"><span class="pill">Live KBO &amp; VOD streaming overseas</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <section aria-labelledby="games-title">
+    <!-- Full Schedule & Standout Matchup Cards -->
+    <section aria-labelledby="schedule-title">
       <div class="section-head">
-        <div><h2 id="games-title">Upcoming games &amp; schedule</h2><p class="hint">Confirmed game times &amp; announced playoff schedule. Broadcast channels update as announced.</p></div>
+        <div>
+          <h2 id="schedule-title">Complete Postseason Schedule</h2>
+          <p class="hint">Filter rounds to view upcoming matchups, game times, venues, and broadcasts.</p>
+        </div>
       </div>
-      <div class="games">
-        <article class="game">
-          <div class="game-top"><span class="round">Wild Card · Game 1</span><span>Wed, Oct. 14 · 18:30 KST / 2:30 AM PDT</span></div>
-          <div class="matchup"><span class="team">LG Twins · No. 4</span><span class="vs">VS</span><span class="team">Doosan Bears · No. 5</span></div>
-          <div class="game-foot">Jamsil · MBC TV per KBO schedule · TVING stream · (If needed, Game 2 is Thu, Oct. 15 @ 18:30 KST)</div>
+
+      <!-- Quick Filter Buttons -->
+      <div class="schedule-controls" role="group" aria-label="Filter schedule by round">
+        <button class="filter-btn active" data-filter="all">All Rounds (19 Games)</button>
+        <button class="filter-btn" data-filter="wc">Wild Card (Oct 14–15)</button>
+        <button class="filter-btn" data-filter="semi">Semi-Playoff (Oct 17–23)</button>
+        <button class="filter-btn" data-filter="po">Playoff (Oct 25–31)</button>
+        <button class="filter-btn" data-filter="ks">Korean Series (Nov 2–10)</button>
+      </div>
+
+      <div class="schedule-timeline" id="schedule-list">
+
+        <!-- Wild Card Games -->
+        <article class="game-card current" data-round="wc">
+          <div class="game-time-col">
+            <span class="round-badge wc">Wild Card · G1</span>
+            <span class="game-date">Wed, Oct. 14</span>
+            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-4">
+              <span>LG Twins</span>
+              <span class="team-seed">4</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap">
+              <span>Doosan Bears</span>
+              <span class="team-seed">5</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">MBC TV · TVING</span>
+            <span class="broadcast-venue">Seoul Jamsil Stadium</span>
+            <span class="broadcast-note">LG leads 1-0 advantage; 1 win or tie advances</span>
+          </div>
         </article>
-        <article class="game">
-          <div class="game-top"><span class="round">Semi-playoff (Best of 5)</span><span>Starts Sat, Oct. 17 · 14:00 KST / Oct. 16 10:00 PM PDT</span></div>
-          <div class="matchup"><span class="team">KIA Tigers · No. 3</span><span class="vs">VS</span><span class="team">Wild Card winner</span></div>
-          <div class="game-foot">G1: Oct. 17 14:00 · G2: Oct. 18 14:00 · G3: Oct. 20 18:30 · G4: Oct. 21 18:30 · G5: Oct. 23 18:30</div>
+
+        <article class="game-card" data-round="wc">
+          <div class="game-time-col">
+            <span class="round-badge wc">Wild Card · G2</span>
+            <span class="game-date">Thu, Oct. 15</span>
+            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-4">
+              <span>LG Twins</span>
+              <span class="team-seed">4</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap">
+              <span>Doosan Bears</span>
+              <span class="team-seed">5</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial / Cable TBD</span>
+            <span class="broadcast-venue">Seoul Jamsil Stadium</span>
+            <span class="broadcast-note">If necessary (only if Doosan wins Game 1)</span>
+          </div>
         </article>
-        <article class="game">
-          <div class="game-top"><span class="round">Playoff (Best of 5)</span><span>Starts Sun, Oct. 25 · 14:00 KST / Oct. 24 10:00 PM PDT</span></div>
-          <div class="matchup"><span class="team">Samsung Lions · No. 2</span><span class="vs">VS</span><span class="team">Semi-playoff winner</span></div>
-          <div class="game-foot">G1: Oct. 25 14:00 · G2: Oct. 26 18:30 · G3: Oct. 28 18:30 · G4: Oct. 29 18:30 · G5: Oct. 31 14:00</div>
+
+        <!-- Semi-Playoff Games -->
+        <article class="game-card" data-round="semi">
+          <div class="game-time-col">
+            <span class="round-badge semi">Semi-PO · G1</span>
+            <span class="game-date">Sat, Oct. 17</span>
+            <span class="game-subdate">14:00 KST · Oct 16 10:00 PM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-3">
+              <span>KIA Tigers</span>
+              <span class="team-seed">3</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Wild Card Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">KBS / MBC / SBS TBD</span>
+            <span class="broadcast-venue">Gwangju-Kia Champions Field</span>
+            <span class="broadcast-note">Best-of-5 Series Opener</span>
+          </div>
         </article>
-        <article class="game">
-          <div class="game-top"><span class="round">Korean Series (Best of 7)</span><span>Starts Mon, Nov. 2 · 18:30 KST / 2:30 AM PDT</span></div>
-          <div class="matchup"><span class="team">KT Wiz · No. 1</span><span class="vs">VS</span><span class="team">Playoff winner</span></div>
-          <div class="game-foot">G1: Nov. 2 · G2: Nov. 3 · G3: Nov. 5 · G4: Nov. 6 · G5: Nov. 7 · G6: Nov. 9 · G7: Nov. 10</div>
+
+        <article class="game-card" data-round="semi">
+          <div class="game-time-col">
+            <span class="round-badge semi">Semi-PO · G2</span>
+            <span class="game-date">Sun, Oct. 18</span>
+            <span class="game-subdate">14:00 KST · Oct 17 10:00 PM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-3">
+              <span>KIA Tigers</span>
+              <span class="team-seed">3</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Wild Card Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Broadcast Pool TBD</span>
+            <span class="broadcast-venue">Gwangju-Kia Champions Field</span>
+            <span class="broadcast-note">Travel day follows on Mon, Oct. 19</span>
+          </div>
         </article>
+
+        <article class="game-card" data-round="semi">
+          <div class="game-time-col">
+            <span class="round-badge semi">Semi-PO · G3</span>
+            <span class="game-date">Tue, Oct. 20</span>
+            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap tbd">
+              <span>Wild Card Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap seed-3">
+              <span>KIA Tigers</span>
+              <span class="team-seed">3</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Broadcast Pool TBD</span>
+            <span class="broadcast-venue">Wild Card Winner Home (Jamsil)</span>
+            <span class="broadcast-note">Series shifts to WC winner's ballpark</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="semi">
+          <div class="game-time-col">
+            <span class="round-badge semi">Semi-PO · G4</span>
+            <span class="game-date">Wed, Oct. 21</span>
+            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap tbd">
+              <span>Wild Card Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap seed-3">
+              <span>KIA Tigers</span>
+              <span class="team-seed">3</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Broadcast Pool TBD</span>
+            <span class="broadcast-venue">Wild Card Winner Home (Jamsil)</span>
+            <span class="broadcast-note">If necessary</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="semi">
+          <div class="game-time-col">
+            <span class="round-badge semi">Semi-PO · G5</span>
+            <span class="game-date">Fri, Oct. 23</span>
+            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-3">
+              <span>KIA Tigers</span>
+              <span class="team-seed">3</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Wild Card Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Broadcast Pool TBD</span>
+            <span class="broadcast-venue">Gwangju-Kia Champions Field</span>
+            <span class="broadcast-note">Deciding Game (If necessary)</span>
+          </div>
+        </article>
+
+        <!-- Playoff Games -->
+        <article class="game-card" data-round="po">
+          <div class="game-time-col">
+            <span class="round-badge po">Playoff · G1</span>
+            <span class="game-date">Sun, Oct. 25</span>
+            <span class="game-subdate">14:00 KST · Oct 24 10:00 PM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-2">
+              <span>Samsung Lions</span>
+              <span class="team-seed">2</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Semi-PO Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial / Cable TBD</span>
+            <span class="broadcast-venue">Daegu Samsung Lions Park</span>
+            <span class="broadcast-note">Best-of-5 Playoff Opener</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="po">
+          <div class="game-time-col">
+            <span class="round-badge po">Playoff · G2</span>
+            <span class="game-date">Mon, Oct. 26</span>
+            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-2">
+              <span>Samsung Lions</span>
+              <span class="team-seed">2</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Semi-PO Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial / Cable TBD</span>
+            <span class="broadcast-venue">Daegu Samsung Lions Park</span>
+            <span class="broadcast-note">Travel day follows on Tue, Oct. 27</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="po">
+          <div class="game-time-col">
+            <span class="round-badge po">Playoff · G3</span>
+            <span class="game-date">Wed, Oct. 28</span>
+            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap tbd">
+              <span>Semi-PO Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap seed-2">
+              <span>Samsung Lions</span>
+              <span class="team-seed">2</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial / Cable TBD</span>
+            <span class="broadcast-venue">Semi-PO Winner Home</span>
+            <span class="broadcast-note">Series shifts to Semi-PO winner's venue</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="po">
+          <div class="game-time-col">
+            <span class="round-badge po">Playoff · G4</span>
+            <span class="game-date">Thu, Oct. 29</span>
+            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap tbd">
+              <span>Semi-PO Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap seed-2">
+              <span>Samsung Lions</span>
+              <span class="team-seed">2</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial / Cable TBD</span>
+            <span class="broadcast-venue">Semi-PO Winner Home</span>
+            <span class="broadcast-note">If necessary</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="po">
+          <div class="game-time-col">
+            <span class="round-badge po">Playoff · G5</span>
+            <span class="game-date">Sat, Oct. 31</span>
+            <span class="game-subdate">14:00 KST · Oct 30 10:00 PM PDT</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-2">
+              <span>Samsung Lions</span>
+              <span class="team-seed">2</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Semi-PO Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial / Cable TBD</span>
+            <span class="broadcast-venue">Daegu Samsung Lions Park</span>
+            <span class="broadcast-note">Deciding Game (If necessary)</span>
+          </div>
+        </article>
+
+        <!-- Korean Series Games -->
+        <article class="game-card" data-round="ks">
+          <div class="game-time-col">
+            <span class="round-badge ks">Korean Series · G1</span>
+            <span class="game-date">Mon, Nov. 2</span>
+            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-1">
+              <span>KT Wiz</span>
+              <span class="team-seed gold">1</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Playoff Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">KBS / MBC / SBS Live</span>
+            <span class="broadcast-venue">Suwon KT Wiz Park</span>
+            <span class="broadcast-note">Championship Best-of-7 Opener</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="ks">
+          <div class="game-time-col">
+            <span class="round-badge ks">Korean Series · G2</span>
+            <span class="game-date">Tue, Nov. 3</span>
+            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-1">
+              <span>KT Wiz</span>
+              <span class="team-seed gold">1</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Playoff Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial Live</span>
+            <span class="broadcast-venue">Suwon KT Wiz Park</span>
+            <span class="broadcast-note">Travel day follows on Wed, Nov. 4</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="ks">
+          <div class="game-time-col">
+            <span class="round-badge ks">Korean Series · G3</span>
+            <span class="game-date">Thu, Nov. 5</span>
+            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap tbd">
+              <span>Playoff Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap seed-1">
+              <span>KT Wiz</span>
+              <span class="team-seed gold">1</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial Live</span>
+            <span class="broadcast-venue">Playoff Winner Home</span>
+            <span class="broadcast-note">Games 3, 4, 5 held at PO winner venue</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="ks">
+          <div class="game-time-col">
+            <span class="round-badge ks">Korean Series · G4</span>
+            <span class="game-date">Fri, Nov. 6</span>
+            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap tbd">
+              <span>Playoff Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap seed-1">
+              <span>KT Wiz</span>
+              <span class="team-seed gold">1</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial Live</span>
+            <span class="broadcast-venue">Playoff Winner Home</span>
+            <span class="broadcast-note">Potential Championship clincher</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="ks">
+          <div class="game-time-col">
+            <span class="round-badge ks">Korean Series · G5</span>
+            <span class="game-date">Sat, Nov. 7</span>
+            <span class="game-subdate">14:00 KST · Nov 6 9:00 PM PST</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap tbd">
+              <span>Playoff Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap seed-1">
+              <span>KT Wiz</span>
+              <span class="team-seed gold">1</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial Live</span>
+            <span class="broadcast-venue">Playoff Winner Home</span>
+            <span class="broadcast-note">If necessary · Weekend 14:00 KST</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="ks">
+          <div class="game-time-col">
+            <span class="round-badge ks">Korean Series · G6</span>
+            <span class="game-date">Mon, Nov. 9</span>
+            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-1">
+              <span>KT Wiz</span>
+              <span class="team-seed gold">1</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Playoff Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial Live</span>
+            <span class="broadcast-venue">Suwon KT Wiz Park</span>
+            <span class="broadcast-note">If necessary · Series returns to Suwon</span>
+          </div>
+        </article>
+
+        <article class="game-card" data-round="ks">
+          <div class="game-time-col">
+            <span class="round-badge ks">Korean Series · G7</span>
+            <span class="game-date">Tue, Nov. 10</span>
+            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+          </div>
+          <div class="matchup-col">
+            <div class="team-badge-wrap seed-1">
+              <span>KT Wiz</span>
+              <span class="team-seed gold">1</span>
+            </div>
+            <span class="matchup-vs">VS</span>
+            <div class="team-badge-wrap tbd">
+              <span>Playoff Winner</span>
+              <span class="team-seed tbd">W</span>
+            </div>
+          </div>
+          <div class="broadcast-col">
+            <span class="broadcast-channel">Terrestrial Live</span>
+            <span class="broadcast-venue">Suwon KT Wiz Park</span>
+            <span class="broadcast-note">Deciding Championship Game (If necessary)</span>
+          </div>
+        </article>
+
       </div>
     </section>
 
+    <!-- Tournament Bracket View -->
     <section aria-labelledby="bracket-title">
       <div class="section-head">
-        <div><h2 id="bracket-title">Road to the Korean Series</h2><p class="hint">Follow each series winner from left to right. Scroll horizontally on smaller screens.</p></div>
+        <div>
+          <h2 id="bracket-title">Road to the Korean Series (Ladder Bracket)</h2>
+          <p class="hint">KBO's step-ladder postseason format: follow each series winner from left to right.</p>
+        </div>
       </div>
       <div class="bracket-scroll" role="region" aria-label="Horizontal KBO playoff bracket" tabindex="0">
         <div class="bracket">
           <article class="bracket-round">
             <div class="bracket-round-head"><div class="bracket-index">ROUND 01</div><h3>Wild Card</h3></div>
             <div class="bracket-match">
-              <div class="bracket-slot"><span class="seed">4</span>LG Twins</div>
+              <div class="bracket-slot"><span class="team-seed">4</span>LG Twins</div>
               <div class="bracket-vs">VS</div>
-              <div class="bracket-slot"><span class="seed">5</span>Doosan Bears</div>
+              <div class="bracket-slot"><span class="team-seed">5</span>Doosan Bears</div>
             </div>
-            <p class="bracket-advance">Oct. 14–15 · LG advances with 1 win/tie; Doosan needs 2 wins.</p>
+            <p class="bracket-advance">Oct. 14–15 · Jamsil<br>LG advances with 1 win/tie; Doosan needs 2 wins.</p>
           </article>
           <div class="bracket-connector" aria-hidden="true"><span>WINNER</span><b>→</b></div>
           <article class="bracket-round">
-            <div class="bracket-round-head"><div class="bracket-index">ROUND 02</div><h3>Semi-playoff</h3></div>
+            <div class="bracket-round-head"><div class="bracket-index">ROUND 02</div><h3>Semi-Playoff</h3></div>
             <div class="bracket-match">
-              <div class="bracket-slot"><span class="seed">3</span>KIA Tigers</div>
+              <div class="bracket-slot"><span class="team-seed">3</span>KIA Tigers</div>
               <div class="bracket-vs">VS</div>
-              <div class="bracket-slot"><span class="seed tbd">W</span>Wild Card winner</div>
+              <div class="bracket-slot"><span class="team-seed tbd">W</span>Wild Card winner</div>
             </div>
-            <p class="bracket-advance">Oct. 17–23 · Best-of-5 · Winner advances to Playoff.</p>
+            <p class="bracket-advance">Oct. 17–23 · Best-of-5<br>Winner advances to Playoff.</p>
           </article>
           <div class="bracket-connector" aria-hidden="true"><span>WINNER</span><b>→</b></div>
           <article class="bracket-round">
             <div class="bracket-round-head"><div class="bracket-index">ROUND 03</div><h3>Playoff</h3></div>
             <div class="bracket-match">
-              <div class="bracket-slot"><span class="seed">2</span>Samsung Lions</div>
+              <div class="bracket-slot"><span class="team-seed">2</span>Samsung Lions</div>
               <div class="bracket-vs">VS</div>
-              <div class="bracket-slot"><span class="seed tbd">W</span>Semi-playoff winner</div>
+              <div class="bracket-slot"><span class="team-seed tbd">W</span>Semi-playoff winner</div>
             </div>
-            <p class="bracket-advance">Oct. 25–31 · Best-of-5 · Winner advances to Korean Series.</p>
+            <p class="bracket-advance">Oct. 25–31 · Best-of-5<br>Winner advances to Korean Series.</p>
           </article>
           <div class="bracket-connector" aria-hidden="true"><span>WINNER</span><b>→</b></div>
           <article class="bracket-round final">
             <div class="bracket-round-head"><div class="bracket-index">CHAMPIONSHIP</div><h3>Korean Series</h3></div>
             <div class="bracket-match">
-              <div class="bracket-slot"><span class="seed">1</span>KT Wiz</div>
+              <div class="bracket-slot"><span class="team-seed gold">1</span>KT Wiz</div>
               <div class="bracket-vs">VS</div>
-              <div class="bracket-slot"><span class="seed tbd">W</span>Playoff winner</div>
+              <div class="bracket-slot"><span class="team-seed tbd">W</span>Playoff winner</div>
             </div>
-            <p class="bracket-advance">Nov. 2–10 · Best-of-7 (2-3-2 format)</p>
+            <p class="bracket-advance">Nov. 2–10 · Best-of-7<br>2-3-2 format · Suwon KT Wiz Park</p>
           </article>
         </div>
       </div>
     </section>
 
-    <p class="note"><strong>Update tip:</strong> Replace “Wild Card winner,” “Semi-playoff winner,” and “Playoff winner” as each series ends. Channel numbers are left as TBD for you to fill in. Broadcast listings can change, so confirm against the daily KBO or network schedule.</p>
-    <footer><span>2026 KBO Playoff · Updated Oct. 14, 2026</span><span>Times shown in Korea Standard Time (KST) and Pacific Daylight Time (PDT)</span></footer>
+    <p class="note"><strong>Broadcast Note:</strong> Weekday games start at 18:30 KST (2:30 AM PDT / 1:30 AM PST); Weekend &amp; holiday games start at 14:00 KST (Previous night 10:00 PM PDT / 9:00 PM PST). Terrestrial broadcasts (KBS2, MBC, SBS) are rotated for each game. Channel numbers can be personalized in the table above.</p>
+
+    <footer>
+      <span>2026 KBO Playoff Guide · Updated Oct. 14, 2026</span>
+      <span>Times shown in Korea Standard Time (KST) and Pacific Time (PDT / PST)</span>
+    </footer>
   </main>
+
   <script>
     (() => {
+      // Countdown Timer Logic
       const gameTime = Date.parse("2026-10-14T09:30:00Z");
       const values = document.getElementById("countdown-values");
       const status = document.getElementById("countdown-status");
@@ -234,8 +947,8 @@
       function updateCountdown() {
         const remainingMinutes = Math.floor((gameTime - Date.now()) / 60000);
         if (remainingMinutes <= 0) {
-          values.hidden = true;
-          status.textContent = "Scheduled start time reached";
+          if (values) values.hidden = true;
+          if (status) status.textContent = "Game in progress / Started";
           window.clearInterval(timer);
           return;
         }
@@ -243,14 +956,34 @@
         const days = Math.floor(remainingMinutes / 1440);
         const hours = Math.floor((remainingMinutes % 1440) / 60);
         const minutes = remainingMinutes % 60;
-        fields.days.textContent = String(days).padStart(2, "0");
-        fields.hours.textContent = String(hours).padStart(2, "0");
-        fields.minutes.textContent = String(minutes).padStart(2, "0");
-        status.textContent = "";
+        if (fields.days) fields.days.textContent = String(days).padStart(2, "0");
+        if (fields.hours) fields.hours.textContent = String(hours).padStart(2, "0");
+        if (fields.minutes) fields.minutes.textContent = String(minutes).padStart(2, "0");
+        if (status) status.textContent = "";
       }
 
       updateCountdown();
       timer = window.setInterval(updateCountdown, 60000);
+
+      // Filter Tabs Logic
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const gameCards = document.querySelectorAll(".game-card");
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const filter = btn.getAttribute("data-filter");
+
+          gameCards.forEach(card => {
+            if (filter === "all" || card.getAttribute("data-round") === filter) {
+              card.style.display = "grid";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
     })();
   </script>
 </body>
