@@ -32,6 +32,16 @@
     h1 { margin: 8px 0 4px; font-size: clamp(3rem, 9vw, 7rem); line-height: .98; letter-spacing: -.06em; }
     .lede { margin: 14px 0 0; max-width: 610px; color: var(--muted); font-size: 1.05rem; }
     .season-mark { color: var(--lime); border: 1px solid var(--line); padding: 12px 15px; border-radius: 14px; white-space: nowrap; font-weight: 750; }
+    .countdown-card { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 20px 22px; border: 1px solid #596d45; border-radius: 18px; background: linear-gradient(110deg, #263a2d, #192925); }
+    .countdown-copy { min-width: 0; }
+    .countdown-label { color: var(--lime); font-size: .73rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    .countdown-copy h2 { margin: 4px 0 3px; }
+    .countdown-copy p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .countdown-values { display: grid; grid-template-columns: repeat(3, minmax(64px, 82px)); gap: 8px; flex: 0 0 auto; }
+    .countdown-unit { padding: 8px 6px; text-align: center; border: 1px solid var(--line); border-radius: 12px; background: #101c19; }
+    .countdown-unit strong { display: block; color: var(--ink); font-size: 1.65rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .countdown-unit span { color: var(--muted); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
+    .countdown-status { color: var(--lime); font-weight: 800; font-size: .95rem; text-align: right; }
     .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 36px 0 14px; }
     h2 { margin: 0; font-size: 1.4rem; letter-spacing: -.025em; }
     .hint { color: var(--muted); margin: 4px 0 0; font-size: .9rem; }
@@ -75,6 +85,9 @@
       .wrap { width: min(100% - 24px, 540px); padding-top: 28px; }
       header { display: block; }
       .season-mark { display: inline-block; margin-top: 18px; }
+      .countdown-card { align-items: stretch; flex-direction: column; gap: 14px; padding: 17px; }
+      .countdown-values { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .countdown-status { text-align: left; }
       .games { grid-template-columns: 1fr; }
       th, td { padding: 13px 12px; }
       .hide-mobile { display: none; }
@@ -93,6 +106,20 @@
       </div>
       <div class="season-mark">2026 POSTSEASON</div>
     </header>
+
+    <section class="countdown-card" aria-labelledby="countdown-heading">
+      <div class="countdown-copy">
+        <div class="countdown-label">Next scheduled game</div>
+        <h2 id="countdown-heading">Wild Card · Game 1</h2>
+        <p>Wed, Oct. 14 · 2:30 AM PDT / 18:30 KST</p>
+      </div>
+      <div class="countdown-values" id="countdown-values" role="timer" aria-label="Countdown to the Wild Card game">
+        <div class="countdown-unit"><strong id="countdown-days">--</strong><span>Days</span></div>
+        <div class="countdown-unit"><strong id="countdown-hours">--</strong><span>Hours</span></div>
+        <div class="countdown-unit"><strong id="countdown-minutes">--</strong><span>Minutes</span></div>
+      </div>
+      <div class="countdown-status" id="countdown-status" aria-live="polite"></div>
+    </section>
 
     <section aria-labelledby="channels-title">
       <div class="section-head">
@@ -192,5 +219,39 @@
     <p class="note"><strong>Update tip:</strong> Replace “Wild Card winner,” “Semi-playoff winner,” and “Playoff winner” as each series ends. Channel numbers are left as TBD for you to fill in. Broadcast listings can change, so confirm against the daily KBO or network schedule.</p>
     <footer><span>2026 KBO Playoff · Updated Oct. 13, 2026</span><span>Times shown in Korea Standard Time (KST) and Pacific Daylight Time (PDT)</span></footer>
   </main>
+  <script>
+    (() => {
+      const gameTime = Date.parse("2026-10-14T09:30:00Z");
+      const values = document.getElementById("countdown-values");
+      const status = document.getElementById("countdown-status");
+      const fields = {
+        days: document.getElementById("countdown-days"),
+        hours: document.getElementById("countdown-hours"),
+        minutes: document.getElementById("countdown-minutes")
+      };
+      let timer;
+
+      function updateCountdown() {
+        const remainingMinutes = Math.floor((gameTime - Date.now()) / 60000);
+        if (remainingMinutes <= 0) {
+          values.hidden = true;
+          status.textContent = "Scheduled start time reached";
+          window.clearInterval(timer);
+          return;
+        }
+
+        const days = Math.floor(remainingMinutes / 1440);
+        const hours = Math.floor((remainingMinutes % 1440) / 60);
+        const minutes = remainingMinutes % 60;
+        fields.days.textContent = String(days).padStart(2, "0");
+        fields.hours.textContent = String(hours).padStart(2, "0");
+        fields.minutes.textContent = String(minutes).padStart(2, "0");
+        status.textContent = "";
+      }
+
+      updateCountdown();
+      timer = window.setInterval(updateCountdown, 60000);
+    })();
+  </script>
 </body>
 </html>
