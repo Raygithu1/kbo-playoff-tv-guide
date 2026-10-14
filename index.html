@@ -157,7 +157,7 @@
     }
     .game-card {
       display: grid;
-      grid-template-columns: 140px 1fr 230px;
+      grid-template-columns: 215px 1fr 230px;
       align-items: center;
       gap: 18px;
       padding: 16px 22px;
@@ -362,7 +362,7 @@
     <header class="header-bar">
       <div class="header-left">
         <h1>2026 KBO Playoff</h1>
-        <p class="header-desc">TV broadcast guide &amp; schedule (KST / PDT)</p>
+        <p class="header-desc">TV broadcast guide &amp; schedule · Primary timezone: Pacific Time (PT)</p>
       </div>
       <div class="season-badge"><span class="pulse-dot"></span> POSTSEASON LIVE</div>
     </header>
@@ -373,7 +373,7 @@
         <span class="hero-tag">Next Matchup · Semi-Playoff G1</span>
         <h2 class="hero-title" id="hero-game-heading">Semi-Playoff · Game 1: KIA Tigers vs. LG Twins</h2>
         <p class="hero-meta">
-          <strong>Sat, Oct. 17 · 14:00 KST</strong> (Oct. 16 · 10:00 PM PDT) &nbsp;•&nbsp; 
+          <strong>Fri, Oct. 16 · 10:00 PM PDT</strong> (Sat, Oct. 17 · 14:00 KST) &nbsp;•&nbsp; 
           <span>Gwangju-Kia Champions Field</span> &nbsp;•&nbsp; 
           <span>Broadcast: <strong>KBS2 / MBC / SBS Live</strong> &amp; <strong>TVING</strong></span>
         </p>
@@ -444,10 +444,10 @@
       <!-- Quick Filter Buttons -->
       <div class="schedule-controls" role="group" aria-label="Filter schedule by round">
         <button class="filter-btn active" data-filter="all">All Rounds (19 Games)</button>
-        <button class="filter-btn" data-filter="wc">Wild Card (Oct 14–15)</button>
-        <button class="filter-btn" data-filter="semi">Semi-Playoff (Oct 17–23)</button>
-        <button class="filter-btn" data-filter="po">Playoff (Oct 25–31)</button>
-        <button class="filter-btn" data-filter="ks">Korean Series (Nov 2–10)</button>
+        <button class="filter-btn" data-filter="wc">Wild Card (Oct 14–15 PT)</button>
+        <button class="filter-btn" data-filter="semi">Semi-Playoff (Oct 16–23 PT)</button>
+        <button class="filter-btn" data-filter="po">Playoff (Oct 24–30 PT)</button>
+        <button class="filter-btn" data-filter="ks">Korean Series (Nov 2–10 PT)</button>
       </div>
 
       <div class="schedule-timeline" id="schedule-list">
@@ -456,8 +456,8 @@
         <article class="game-card completed" data-round="wc">
           <div class="game-time-col">
             <span class="round-badge wc">Wild Card · G1</span>
-            <span class="game-date">Wed, Oct. 14</span>
-            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+            <span class="game-date">Wed, Oct. 14 · 2:30 AM PDT</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-4">
@@ -480,8 +480,8 @@
         <article class="game-card cancelled" data-round="wc">
           <div class="game-time-col">
             <span class="round-badge wc">Wild Card · G2</span>
-            <span class="game-date">Thu, Oct. 15</span>
-            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+            <span class="game-date">Thu, Oct. 15 · 2:30 AM PDT</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-4">
@@ -505,8 +505,8 @@
         <article class="game-card current" data-round="semi">
           <div class="game-time-col">
             <span class="round-badge semi">Semi-PO · G1</span>
-            <span class="game-date">Sat, Oct. 17</span>
-            <span class="game-subdate">14:00 KST · Fri, Oct. 16 10:00 PM PDT</span>
+            <span class="game-date">Fri, Oct. 16 · 10:00 PM PDT</span>
+            <span class="game-subdate">Sat, Oct. 17 · 14:00 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-3">
@@ -529,8 +529,8 @@
         <article class="game-card" data-round="semi">
           <div class="game-time-col">
             <span class="round-badge semi">Semi-PO · G2</span>
-            <span class="game-date">Sun, Oct. 18</span>
-            <span class="game-subdate">14:00 KST · Sat, Oct. 17 10:00 PM PDT</span>
+            <span class="game-date">Sat, Oct. 17 · 10:00 PM PDT</span>
+            <span class="game-subdate">Sun, Oct. 18 · 14:00 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-3">
@@ -553,8 +553,8 @@
         <article class="game-card" data-round="semi">
           <div class="game-time-col">
             <span class="round-badge semi">Semi-PO · G3</span>
-            <span class="game-date">Tue, Oct. 20</span>
-            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+            <span class="game-date">Tue, Oct. 20 · 2:30 AM PDT</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-4">
@@ -577,8 +577,8 @@
         <article class="game-card" data-round="semi">
           <div class="game-time-col">
             <span class="round-badge semi">Semi-PO · G4</span>
-            <span class="game-date">Wed, Oct. 21</span>
-            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+            <span class="game-date">Wed, Oct. 21 · 2:30 AM PDT</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-4">
@@ -601,8 +601,8 @@
         <article class="game-card" data-round="semi">
           <div class="game-time-col">
             <span class="round-badge semi">Semi-PO · G5</span>
-            <span class="game-date">Fri, Oct. 23</span>
-            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+            <span class="game-date">Fri, Oct. 23 · 2:30 AM PDT</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-3">
@@ -626,8 +626,8 @@
         <article class="game-card" data-round="po">
           <div class="game-time-col">
             <span class="round-badge po">Playoff · G1</span>
-            <span class="game-date">Sun, Oct. 25</span>
-            <span class="game-subdate">14:00 KST · Sat, Oct. 24 10:00 PM PDT</span>
+            <span class="game-date">Sat, Oct. 24 · 10:00 PM PDT</span>
+            <span class="game-subdate">Sun, Oct. 25 · 14:00 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-2">
@@ -650,8 +650,8 @@
         <article class="game-card" data-round="po">
           <div class="game-time-col">
             <span class="round-badge po">Playoff · G2</span>
-            <span class="game-date">Mon, Oct. 26</span>
-            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+            <span class="game-date">Mon, Oct. 26 · 2:30 AM PDT</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-2">
@@ -674,8 +674,8 @@
         <article class="game-card" data-round="po">
           <div class="game-time-col">
             <span class="round-badge po">Playoff · G3</span>
-            <span class="game-date">Wed, Oct. 28</span>
-            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+            <span class="game-date">Wed, Oct. 28 · 2:30 AM PDT</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap tbd">
@@ -698,8 +698,8 @@
         <article class="game-card" data-round="po">
           <div class="game-time-col">
             <span class="round-badge po">Playoff · G4</span>
-            <span class="game-date">Thu, Oct. 29</span>
-            <span class="game-subdate">18:30 KST · 2:30 AM PDT</span>
+            <span class="game-date">Thu, Oct. 29 · 2:30 AM PDT</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap tbd">
@@ -722,8 +722,8 @@
         <article class="game-card" data-round="po">
           <div class="game-time-col">
             <span class="round-badge po">Playoff · G5</span>
-            <span class="game-date">Sat, Oct. 31</span>
-            <span class="game-subdate">14:00 KST · Fri, Oct. 30 10:00 PM PDT</span>
+            <span class="game-date">Fri, Oct. 30 · 10:00 PM PDT</span>
+            <span class="game-subdate">Sat, Oct. 31 · 14:00 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-2">
@@ -747,8 +747,8 @@
         <article class="game-card" data-round="ks">
           <div class="game-time-col">
             <span class="round-badge ks">Korean Series · G1</span>
-            <span class="game-date">Mon, Nov. 2</span>
-            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+            <span class="game-date">Mon, Nov. 2 · 1:30 AM PST</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-1">
@@ -771,8 +771,8 @@
         <article class="game-card" data-round="ks">
           <div class="game-time-col">
             <span class="round-badge ks">Korean Series · G2</span>
-            <span class="game-date">Tue, Nov. 3</span>
-            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+            <span class="game-date">Tue, Nov. 3 · 1:30 AM PST</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-1">
@@ -795,8 +795,8 @@
         <article class="game-card" data-round="ks">
           <div class="game-time-col">
             <span class="round-badge ks">Korean Series · G3</span>
-            <span class="game-date">Thu, Nov. 5</span>
-            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+            <span class="game-date">Thu, Nov. 5 · 1:30 AM PST</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap tbd">
@@ -819,8 +819,8 @@
         <article class="game-card" data-round="ks">
           <div class="game-time-col">
             <span class="round-badge ks">Korean Series · G4</span>
-            <span class="game-date">Fri, Nov. 6</span>
-            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+            <span class="game-date">Fri, Nov. 6 · 1:30 AM PST</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap tbd">
@@ -843,8 +843,8 @@
         <article class="game-card" data-round="ks">
           <div class="game-time-col">
             <span class="round-badge ks">Korean Series · G5</span>
-            <span class="game-date">Sat, Nov. 7</span>
-            <span class="game-subdate">14:00 KST · Fri, Nov. 6 9:00 PM PST</span>
+            <span class="game-date">Fri, Nov. 6 · 9:00 PM PST</span>
+            <span class="game-subdate">Sat, Nov. 7 · 14:00 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap tbd">
@@ -867,8 +867,8 @@
         <article class="game-card" data-round="ks">
           <div class="game-time-col">
             <span class="round-badge ks">Korean Series · G6</span>
-            <span class="game-date">Mon, Nov. 9</span>
-            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+            <span class="game-date">Mon, Nov. 9 · 1:30 AM PST</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-1">
@@ -891,8 +891,8 @@
         <article class="game-card" data-round="ks">
           <div class="game-time-col">
             <span class="round-badge ks">Korean Series · G7</span>
-            <span class="game-date">Tue, Nov. 10</span>
-            <span class="game-subdate">18:30 KST · 1:30 AM PST</span>
+            <span class="game-date">Tue, Nov. 10 · 1:30 AM PST</span>
+            <span class="game-subdate">18:30 KST (Korea)</span>
           </div>
           <div class="matchup-col">
             <div class="team-badge-wrap seed-1">
@@ -932,7 +932,7 @@
               <div class="bracket-vs">4 - 1</div>
               <div class="bracket-slot"><span class="team-seed">5</span>Doosan Bears</div>
             </div>
-            <p class="bracket-advance">Wed, Oct. 14 · Jamsil<br>LG wins 4-1; clinched series in Game 1.</p>
+            <p class="bracket-advance">Wed, Oct. 14 PT · Jamsil<br>LG wins 4-1; clinched series in Game 1.</p>
           </article>
           <div class="bracket-connector" aria-hidden="true"><span>WINNER</span><b>→</b></div>
           <article class="bracket-round">
@@ -942,7 +942,7 @@
               <div class="bracket-vs">VS</div>
               <div class="bracket-slot"><span class="team-seed">4</span>LG Twins</div>
             </div>
-            <p class="bracket-advance">Sat, Oct. 17 – Fri, Oct. 23 · Best-of-5<br>Winner advances to Playoff.</p>
+            <p class="bracket-advance">Fri, Oct. 16 – Fri, Oct. 23 PT · Best-of-5<br>Winner advances to Playoff.</p>
           </article>
           <div class="bracket-connector" aria-hidden="true"><span>WINNER</span><b>→</b></div>
           <article class="bracket-round">
@@ -952,7 +952,7 @@
               <div class="bracket-vs">VS</div>
               <div class="bracket-slot"><span class="team-seed tbd">W</span>Semi-playoff winner</div>
             </div>
-            <p class="bracket-advance">Sun, Oct. 25 – Sat, Oct. 31 · Best-of-5<br>Winner advances to Korean Series.</p>
+            <p class="bracket-advance">Sat, Oct. 24 – Fri, Oct. 30 PT · Best-of-5<br>Winner advances to Korean Series.</p>
           </article>
           <div class="bracket-connector" aria-hidden="true"><span>WINNER</span><b>→</b></div>
           <article class="bracket-round final">
@@ -962,17 +962,17 @@
               <div class="bracket-vs">VS</div>
               <div class="bracket-slot"><span class="team-seed tbd">W</span>Playoff winner</div>
             </div>
-            <p class="bracket-advance">Mon, Nov. 2 – Tue, Nov. 10 · Best-of-7<br>2-3-2 format · Suwon KT Wiz Park</p>
+            <p class="bracket-advance">Mon, Nov. 2 – Tue, Nov. 10 PT · Best-of-7<br>2-3-2 format · Suwon KT Wiz Park</p>
           </article>
         </div>
       </div>
     </section>
 
-    <p class="note"><strong>Broadcast Note:</strong> Weekday games start at 18:30 KST (2:30 AM PDT / 1:30 AM PST); Weekend &amp; holiday games start at 14:00 KST (Previous night 10:00 PM PDT / 9:00 PM PST). Terrestrial broadcasts (KBS2, MBC, SBS) are rotated for each game. Channel numbers can be personalized in the table above.</p>
+    <p class="note"><strong>Broadcast &amp; Timezone Note:</strong> All primary dates &amp; times are displayed in <strong>Pacific Time (PT)</strong> with Korean local times in subtitles. Weekend games start at <strong>10:00 PM PDT</strong> (Friday / Saturday nights) or <strong>9:00 PM PST</strong> (after Nov. 1 Daylight Saving change). Weekday games start at <strong>2:30 AM PDT / 1:30 AM PST</strong> (18:30 KST evening in Korea). Korean broadcasts rotate between KBS2, MBC, SBS, and TVING.</p>
 
     <footer>
       <span>2026 KBO Playoff Guide · Updated Oct. 14, 2026</span>
-      <span>Times shown in Korea Standard Time (KST) and Pacific Time (PDT / PST)</span>
+      <span>Primary schedule shown in Pacific Time (PDT / PST) with local Korea Standard Time (KST) reference</span>
     </footer>
   </main>
 
