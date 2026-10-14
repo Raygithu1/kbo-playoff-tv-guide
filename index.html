@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#10231f" />
+  <title>KBO Playoff TV Guide</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101b19;
+      --panel: #182724;
+      --panel-2: #20332e;
+      --ink: #f5f2e9;
+      --muted: #b1c0b9;
+      --line: #385047;
+      --lime: #c9ed76;
+      --orange: #ff9e62;
+      --blue: #8fc9ef;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 82% 0%, #284137 0, transparent 36%), var(--bg);
+      color: var(--ink);
+      font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .wrap { width: min(1120px, calc(100% - 36px)); margin: 0 auto; padding: 42px 0 64px; }
+    .eyebrow { color: var(--lime); font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    header { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+    h1 { margin: 8px 0 4px; font-size: clamp(2.4rem, 7vw, 5.25rem); line-height: .98; letter-spacing: -.06em; }
+    .lede { margin: 14px 0 0; max-width: 610px; color: var(--muted); font-size: 1.05rem; }
+    .season-mark { color: var(--lime); border: 1px solid var(--line); padding: 12px 15px; border-radius: 14px; white-space: nowrap; font-weight: 750; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 36px 0 14px; }
+    h2 { margin: 0; font-size: 1.4rem; letter-spacing: -.025em; }
+    .hint { color: var(--muted); margin: 4px 0 0; font-size: .9rem; }
+    .table-shell { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: color-mix(in srgb, var(--panel) 92%, transparent); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: .74rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 800; background: #1c2d29; }
+    tr:last-child td { border-bottom: 0; }
+    .channel-name { font-weight: 760; }
+    .channel-number { color: var(--lime); font-weight: 800; font-variant-numeric: tabular-nums; }
+    .pill { display: inline-flex; align-items: center; padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .8rem; }
+    .games { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .game { position: relative; min-height: 164px; padding: 19px; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(135deg, var(--panel-2), var(--panel)); }
+    .game-top { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: .83rem; }
+    .round { color: var(--orange); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .matchup { display: flex; align-items: center; gap: 12px; margin: 24px 0 16px; font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 800; letter-spacing: -.03em; }
+    .team { flex: 1; padding: 10px 11px; border-radius: 10px; background: #13211e; border: 1px dashed #587066; text-align: center; }
+    .vs { color: var(--muted); font-size: .72rem; letter-spacing: .12em; }
+    .game-foot { color: var(--muted); font-size: .85rem; }
+    .progress { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .stage { border: 1px solid var(--line); border-radius: 16px; padding: 16px; background: var(--panel); min-height: 137px; }
+    .stage-label { color: var(--blue); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; }
+    .stage strong { display: block; margin: 10px 0 5px; font-size: 1rem; }
+    .stage p { color: var(--muted); margin: 0; font-size: .86rem; }
+    .note { border-left: 3px solid var(--lime); margin-top: 24px; padding: 12px 16px; color: var(--muted); background: #172521; border-radius: 0 12px 12px 0; font-size: .9rem; }
+    footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 38px; color: #859991; font-size: .8rem; }
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 24px, 540px); padding-top: 28px; }
+      header { display: block; }
+      .season-mark { display: inline-block; margin-top: 18px; }
+      .games { grid-template-columns: 1fr; }
+      .progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      th, td { padding: 13px 12px; }
+      .hide-mobile { display: none; }
+      footer { display: block; }
+      footer span { display: block; margin-top: 5px; }
+    }
+    @media (max-width: 380px) { .progress { grid-template-columns: 1fr; } .matchup { gap: 7px; } .team { padding: 9px 5px; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <div class="eyebrow">October baseball · Korea</div>
+        <h1>KBO Playoff<br />TV Guide</h1>
+        <p class="lede">Your quick guide to where the postseason is on. The opening matchup is set; later rounds will fill in as teams advance.</p>
+      </div>
+      <div class="season-mark">2026 POSTSEASON</div>
+    </header>
+
+    <section aria-labelledby="channels-title">
+      <div class="section-head">
+        <div><h2 id="channels-title">Channels</h2><p class="hint">Add the channel number when you have it.</p></div>
+        <span class="pill">Channel numbers: add your provider numbers</span>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead><tr><th>Channel name</th><th>Channel number</th><th class="hide-mobile">Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="channel-name">MBC TV</td><td class="channel-number">TBD</td><td class="hide-mobile"><span class="pill">Oct. 14 Wild Card · KBO listing</span></td></tr>
+            <tr><td class="channel-name">KBS N SPORTS</td><td class="channel-number">TBD</td><td class="hide-mobile"><span class="pill">Wild Card listing · check daily schedule</span></td></tr>
+            <tr><td class="channel-name">TVING</td><td class="channel-number">App</td><td class="hide-mobile"><span class="pill">KBO says full postseason stream</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="games-title">
+      <div class="section-head">
+        <div><h2 id="games-title">Upcoming games</h2><p class="hint">Confirmed matchup first; later rounds update when their teams are decided.</p></div>
+      </div>
+      <div class="games">
+        <article class="game">
+          <div class="game-top"><span class="round">Wild Card · Game 1</span><span>Wed, Oct. 14 · 18:30 KST</span></div>
+          <div class="matchup"><span class="team">LG Twins · No. 4</span><span class="vs">VS</span><span class="team">Doosan Bears · No. 5</span></div>
+          <div class="game-foot">Jamsil · MBC TV per KBO schedule · TVING stream</div>
+        </article>
+        <article class="game">
+          <div class="game-top"><span class="round">Semi-playoff</span><span>Date &amp; time TBD</span></div>
+          <div class="matchup"><span class="team">KIA Tigers · No. 3</span><span class="vs">VS</span><span class="team">Wild Card winner</span></div>
+          <div class="game-foot">LG has the No. 4 advantage; winner TBD · broadcast TBD</div>
+        </article>
+        <article class="game">
+          <div class="game-top"><span class="round">Playoff</span><span>Date &amp; time TBD</span></div>
+          <div class="matchup"><span class="team">Samsung Lions · No. 2</span><span class="vs">VS</span><span class="team">Semi-playoff winner</span></div>
+          <div class="game-foot">Broadcast TBD</div>
+        </article>
+        <article class="game">
+          <div class="game-top"><span class="round">Korean Series</span><span>Date &amp; time TBD</span></div>
+          <div class="matchup"><span class="team">KT Wiz · No. 1</span><span class="vs">VS</span><span class="team">Playoff winner</span></div>
+          <div class="game-foot">KT earned the regular-season pennant and direct berth · broadcast TBD</div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="bracket-title">
+      <div class="section-head">
+        <div><h2 id="bracket-title">Road to the Korean Series</h2><p class="hint">Update each seed with the team that earns the spot.</p></div>
+      </div>
+      <div class="progress">
+        <div class="stage"><div class="stage-label">Wild Card</div><strong>LG Twins (4) vs. Doosan Bears (5)</strong><p>LG advances with one win or tie; Doosan needs two wins.</p></div>
+        <div class="stage"><div class="stage-label">Semi-playoff</div><strong>KIA Tigers (3) vs. Wild Card winner</strong><p>Winner advances to the playoff.</p></div>
+        <div class="stage"><div class="stage-label">Playoff</div><strong>Samsung Lions (2) vs. Semi-playoff winner</strong><p>Winner advances to the Korean Series.</p></div>
+        <div class="stage"><div class="stage-label">Korean Series</div><strong>KT Wiz (1) vs. Playoff winner</strong><p>KT earned the direct berth; best-of-seven series.</p></div>
+      </div>
+    </section>
+
+    <p class="note"><strong>Update tip:</strong> Replace “Wild Card winner,” “Semi-playoff winner,” and “Playoff winner” as each series ends. Channel numbers are left as TBD for you to fill in. Broadcast listings can change, so confirm against the daily KBO or network schedule.</p>
+    <footer><span>KBO Playoff TV Guide · Updated Oct. 13, 2026</span><span>Local South Korean broadcast listings shown in KST</span></footer>
+  </main>
+</body>
+</html>
