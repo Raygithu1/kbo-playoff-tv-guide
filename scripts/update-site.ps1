@@ -35,7 +35,7 @@ HARD RULES
 STEPS
 1. Verify last night's results and the next game from at least two sources.
 2. Update the hero game, the countdown target (Date.parse in the script block) and mark finished games as completed with their final score.
-3. Refresh the "KBO on Korean TV - Next 7 Days" EPG table from the official KBS N SPORTS EPG (https://www.kbsn.co.kr/schedule/?bdcst_code=sports&wdate=YYYYMMDD) plus the published terrestrial live rotation (KBS2 / SBS / MBC). Keep the same row CSS classes (epg-row / epg-live / epg-replay / epg-show / epg-hl, epg-date, epg-badge).
+3. Refresh the "KBO on Korean TV - Next 7 Days" EPG table from the official KBS N SPORTS EPG (https://www.kbsn.co.kr/schedule/?bdcst_code=sports&wdate=YYYYMMDD) plus the published terrestrial live rotation (KBS2 / SBS / MBC). IMPORTANT: the table header says "Time (PT)" - convert every KST listing to Pacific time (KST - 16h while PDT is in effect; KST - 17h after Nov 1 when PST starts) and group rows by the PACIFIC calendar date, not the KST date. Keep the same row CSS classes (epg-row / epg-live / epg-replay / epg-show / epg-hl, epg-date, epg-badge), ~7 epg-date rows and ~31 epg-row rows. Keep the section note's "PDT = KST - 16h" wording.
 4. Refresh every "checked Oct. NN" pill and the "Updated" footer date.
 5. Keep the existing English copy, layout and CSS.
 
