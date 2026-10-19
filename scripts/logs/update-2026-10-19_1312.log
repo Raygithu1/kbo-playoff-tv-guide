@@ -1,0 +1,3 @@
+﻿[2026-10-19 13:12:00] Daily KBO site update started (DryRun=True)
+[2026-10-19 13:12:00] DryRun: would run 'C:\Users\ray.fung\AppData\Roaming\npm\opencode.cmd run --auto --model opencode/big-pickle --dir C:\Code\KBO'
+[2026-10-19 13:12:00] Uncommitted changes remain, committing: ?? scripts/
