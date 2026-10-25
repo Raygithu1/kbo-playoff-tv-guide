@@ -389,12 +389,12 @@
     <!-- Hero Next Game Banner -->
     <section class="hero-banner" aria-labelledby="hero-game-heading">
       <div>
-        <span class="hero-tag">Next Matchup · Playoff G1 · KIA swept Semi-PO 3-0</span>
-        <h2 class="hero-title" id="hero-game-heading">Playoff · Game 1: Samsung Lions vs. KIA Tigers</h2>
+        <span class="hero-tag">Next Matchup · Playoff G2 · KIA swept Semi-PO 3-0</span>
+        <h2 class="hero-title" id="hero-game-heading">Playoff · Game 2: Samsung Lions vs. KIA Tigers</h2>
         <p class="hero-meta">
-          <strong>Sat, Oct. 24 · 10:00 PM PDT</strong> (Sun, Oct. 25 · 14:00 KST) &nbsp;•&nbsp; 
+          <strong>Mon, Oct. 26 · 2:30 AM PDT</strong> (Mon, Oct. 26 · 18:30 KST) &nbsp;•&nbsp; 
           <span>Daegu Samsung Lions Park</span> &nbsp;•&nbsp; 
-          <span>Live on MBC (terrestrial) &amp; TVING · KBS N SPORTS replays 6:30 &amp; 11:00 PM KST</span>
+          <span>Live on KBS2 (terrestrial) &amp; TVING · KBS N SPORTS replay 6:30 PM KST</span>
         </p>
       </div>
       <div class="countdown-boxes" id="countdown-values" role="timer" aria-label="Countdown to next game">
@@ -752,7 +752,7 @@
         </article>
 
         <!-- Playoff Games -->
-        <article class="game-card current" data-round="po">
+        <article class="game-card completed" data-round="po">
           <div class="game-time-col">
             <span class="round-badge po">Playoff · G1</span>
             <span class="game-date">Sat, Oct. 24 · 10:00 PM PDT</span>
@@ -763,20 +763,20 @@
               <span>Samsung Lions</span>
               <span class="team-seed">2</span>
             </div>
-            <span class="matchup-vs">VS</span>
+            <span class="matchup-vs">5 - 1</span>
             <div class="team-badge-wrap seed-3">
               <span>KIA Tigers</span>
               <span class="team-seed">3</span>
             </div>
           </div>
           <div class="broadcast-col">
-            <span class="broadcast-channel">MBC · ch 2502</span>
+            <span class="broadcast-channel"><span class="status-pill final">FINAL</span> · MBC · ch 2502</span>
             <span class="broadcast-venue">Daegu Samsung Lions Park</span>
-            <span class="broadcast-note">Best-of-5 Playoff Opener · live on MBC · KIA advanced with a 3-0 semi-playoff sweep · streams live on TVING; KBS N SPORTS replays Oct 25, 6:30 &amp; 11:00 PM KST</span>
+            <span class="broadcast-note">Samsung wins G1 5-1</span>
           </div>
         </article>
 
-        <article class="game-card" data-round="po">
+        <article class="game-card current" data-round="po">
           <div class="game-time-col">
             <span class="round-badge po">Playoff · G2</span>
             <span class="game-date">Mon, Oct. 26 · 2:30 AM PDT</span>
@@ -1100,15 +1100,15 @@
     <p class="note"><strong>Broadcast &amp; Timezone Note:</strong> All primary dates &amp; times are displayed in <strong>Pacific Time (PT)</strong> with Korean local times in subtitles. Weekend games start at <strong>10:00 PM PDT</strong> (Friday / Saturday nights) or <strong>9:00 PM PST</strong> (after Nov. 1 Daylight Saving change). Weekday games start at <strong>2:30 AM PDT / 1:30 AM PST</strong> (18:30 KST evening in Korea). In the 2026 postseason, <strong>live TV is on the terrestrial networks only</strong> — Semi-PO G1 aired on <strong>KBS2</strong>, G2 on <strong>SBS</strong>, and G3 on <strong>MBC</strong>; KIA then <strong>swept the Semi-Playoff 3-0 (5-1, 6-3, 13-1)</strong>, so Games 4 and 5 were cancelled. The <strong>Playoff (Samsung vs KIA)</strong> opens <strong>Sun, Oct. 25 at 14:00 KST / Sat, Oct. 24 at 10:00 PM PT</strong> at Daegu Samsung Lions Park, with the terrestrial rotation now confirmed — <strong>G1 MBC, G2 KBS2, G3 SBS, G4 MBC, G5 KBS2</strong>. Cable channel <strong>KBS N SPORTS</strong> carries the <strong>recorded same-day replays</strong> and Playoff preview shows (see the <strong>KBO on Korean TV</strong> section above for exact times). <strong>MBC SPORTS+, SBS Sports, SPOTV, SPOTV2, and tvN SPORTS show no KBO games</strong> in published listings (checked Oct. 24). Replay times can shift, so <strong>verify each channel's schedule before the first pitch</strong>. <strong>TVING</strong> streams every game in Korea; <strong>SOOP</strong> streams every game free outside Korea.</p>
 
     <footer>
-      <span>2026 KBO Playoff Guide · Updated Oct. 24, 2026</span>
+      <span>2026 KBO Playoff Guide · Updated Oct. 26, 2026 (KST)</span>
       <span>Primary schedule shown in Pacific Time (PDT / PST) with local Korea Standard Time (KST) reference</span>
     </footer>
   </main>
 
   <script>
     (() => {
-      // Countdown Timer Logic - Playoff Game 1: Sun, Oct 25, 2026 14:00 KST (05:00 UTC)
-      const gameTime = Date.parse("2026-10-25T05:00:00Z");
+      // Countdown Timer Logic - Playoff Game 2: Mon, Oct 26, 2026 18:30 KST (09:30 UTC)
+      const gameTime = Date.parse("2026-10-26T09:30:00Z");
       const values = document.getElementById("countdown-values");
       const status = document.getElementById("countdown-status");
       const fields = {
